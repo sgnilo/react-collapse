@@ -25,39 +25,122 @@ export default class extends React.Component {
 
     constructor(props) {
         super(props)
+        this.oridinary = React.createRef()
+        this.accordion = React.createRef()
+        this.nest = React.createRef()
+        this.concise = React.createRef()
+        this.hideIcon = React.createRef()
+        this.moreNode = React.createRef()
+        this.custom = React.createRef()
         this.state = {
             iconPosition: 'left',
             modes: [
                 {
                     mode: '普通模式',
-                    ref: 0,
+                    ref: this.oridinary,
                 },
                 {
                     mode: '手风琴模式',
-                    ref: 400,
+                    ref: this.accordion,
                 },
                 {
                     mode: '嵌套模式',
-                    ref: 600,
+                    ref: this.nest,
                 },
                 {
                     mode: '简洁模式',
-                    ref: 800,
+                    ref: this.concise,
                 },
                 {
                     mode: '隐藏图标',
-                    ref: 1000,
+                    ref: this.hideIcon,
                 },
                 {
                     mode: '额外节点',
-                    ref: 1200,
+                    ref: this.moreNode,
                 },
                 {
                     mode: '自定义面板',
-                    ref: 1500,
+                    ref: this.custom,
                 }, 
             ],
-            activeMode: '普通模式'
+            activeMode: '普通模式',
+            collapseApi: [
+                {
+                    arg: 'accordion',
+                    type: 'boolean',
+                    default: 'false',
+                    intro: '是否开启手风琴模式',
+                },
+                {
+                    arg: 'defaultProps',
+                    type: 'array',
+                    default: '[]',
+                    intro: '默认展开的Panel的列表，由Panel的targetKey组成的集合',
+                },
+                {
+                    arg: 'onChange',
+                    type: 'function',
+                    default: '() => {}',
+                    intro: '展开或收起Panel的回调函数，参数res为当前Collapse展开的Panel的targetKey组成的列表集合',
+                },
+                {
+                    arg: 'bordered',
+                    type: 'boolean',
+                    default: 'true',
+                    intro: '是否为带边框的默认样式，若为false则应用简洁模式',
+                },
+                {
+                    arg: 'expandIcon',
+                    type: 'object',
+                    default: 'null',
+                    intro: '自定义的图标对象',
+                },
+                {
+                    arg: 'expandIconPosition',
+                    type: 'string',
+                    default: 'left',
+                    intro: '可选值为\'left\' | \'right\', 控制默认图标的位置',
+                }
+            ],
+            panelApi: [
+                {
+                    arg: 'disabled',
+                    type: 'boolean',
+                    default: 'false',
+                    intro: '控制该Panel是否可以交互(展开或收起)',
+                },
+                {
+                    arg: 'header',
+                    type: 'string',
+                    default: '\'\'',
+                    intro: 'Panel的展示title',
+                },
+                {
+                    arg: 'showArrow',
+                    type: 'boolean',
+                    default: 'true',
+                    intro: '是否展示默认图标',
+                },
+                {
+                    arg: 'extra',
+                    type: 'object',
+                    default: 'null',
+                    intro: '右侧自定义节点对象(可选), 最大尺寸为20px * 20px',
+                },
+                {
+                    arg: 'targetKey',
+                    type: 'string|number',
+                    default: '无',
+                    intro: '必填，需自行提供，若忽略可能导致对应Panel无法展开或收起',
+                },
+                {
+                    arg: 'style',
+                    type: 'object',
+                    default: '无',
+                    intro: '可选，自定义Panel样式',
+                }
+            ]
         }
     }
 
@@ -68,9 +151,11 @@ export default class extends React.Component {
     }
 
     changeMode(res) {
+        let { modes } = this.state
         this.setState({
             activeMode: res
         })
+        window.scrollTo(0, modes.find(item => item.mode === res).ref.current.offsetTop)
     }
 
     onChange(res) {
@@ -79,7 +164,7 @@ export default class extends React.Component {
 
     render() {
         const { Panel } = Collapse
-        const { iconPosition, modes, activeMode } = this.state
+        const { iconPosition, modes, activeMode, collapseApi, panelApi } = this.state
         return (
             <div className="demo-wrapper">
                 <div className="example-header">React-Collapse/折叠面板</div>
@@ -89,19 +174,19 @@ export default class extends React.Component {
                     ))}
                 </div>
                 <div className="example-wrapper">
-                    <p>普通模式</p>
+                    <p ref={this.oridinary} className="mode-title">普通模式</p>
                     <Collapse onChange={(res) => {this.onChange(res)}} defaultActiveKey={[1, 2]}>
                         <Panel targetKey={1} header="This is panel header 1"> {content}</Panel>
                         <Panel targetKey={2} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={3} header="This is panel header 3" disabled={true}> {content}</Panel>
                     </Collapse>
-                    <p>手风琴模式</p>
+                    <p ref={this.accordion} className="mode-title">手风琴模式</p>
                     <Collapse accordion={true}>
                         <Panel targetKey={1} header="This is panel header 1"> {content}</Panel>
                         <Panel targetKey={2} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={3} header="This is panel header 3"> {content}</Panel>
                     </Collapse>
-                    <p>嵌套模式</p>
+                    <p ref={this.nest} className="mode-title">嵌套模式</p>
                     <Collapse>
                         <Panel targetKey={1} header="This is panel header 1">
                             <Collapse>
@@ -114,34 +199,78 @@ export default class extends React.Component {
                         <Panel targetKey={2} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={3} header="This is panel header 3"> {content}</Panel>
                     </Collapse>
-                    <p>简洁模式</p>
+                    <p ref={this.concise} className="mode-title">简洁模式</p>
                     <Collapse bordered={false}>
                         <Panel targetKey={'a'} header="This is panel header 1"> {content}</Panel>
                         <Panel targetKey={'b'} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={'c'} header="This is panel header 3"> {content}</Panel>
                     </Collapse>
-                    <p>隐藏箭头</p>
+                    <p ref={this.hideIcon} className="mode-title">隐藏图标</p>
                     <Collapse>
                         <Panel targetKey={1} showArrow={false} header="This is panel header 1"> {content}</Panel>
                         <Panel targetKey={2} showArrow={false} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={3} showArrow={false} header="This is panel header 3"> {content}</Panel>
                     </Collapse>
-                    <p>额外节点</p>
+                    <p ref={this.moreNode} className="mode-title">额外节点</p>
                     <Collapse expandIconPosition={iconPosition}>
                         <Panel targetKey={1} extra={<OtherNode />} header="This is panel header 1"> {content} </Panel>
                         <Panel targetKey={2} extra={<OtherNode />} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={3} extra={<OtherNode />} header="This is panel header 3"> {content}</Panel>
                     </Collapse>
                     <div className="choose-box">
+                        点击对应的按钮切换图标的位置
                         <div className="choose-item" onClick={() => {this.changeAlign('left')}}>left</div>
                         <div className="choose-item" onClick={() => {this.changeAlign('right')}}>right</div>
                     </div>
-                    <p>自定义面板</p>
+                    <p ref={this.custom} className="mode-title">自定义面板</p>
                     <Collapse expandIcon={<CustomIcon />}>
                         <Panel targetKey={1} style={customPanelStyle} header="This is panel header 1"> {content}</Panel>
                         <Panel targetKey={2} style={customPanelStyle} header="This is panel header 2"> {content}</Panel>
                         <Panel targetKey={3} style={customPanelStyle} header="This is panel header 3"> {content}</Panel>
                     </Collapse>
+                    <p className="mode-title">API</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Collapse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>参数</td>
+                                <td>类型</td>
+                                <td>默认值</td>
+                                <td>说明</td>
+                            </tr>
+                            {collapseApi.map(item => <tr key={item.arg}>
+                            <td>{item.arg}</td>
+                            <td>{item.type}</td>
+                            <td>{item.default}</td>
+                            <td>{item.intro}</td>
+                            </tr>)}
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Collapse.Panel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>参数</td>
+                                <td>类型</td>
+                                <td>默认值</td>
+                                <td>说明</td>
+                            </tr>
+                            {panelApi.map(item => <tr key={item.arg}>
+                            <td>{item.arg}</td>
+                            <td>{item.type}</td>
+                            <td>{item.default}</td>
+                            <td>{item.intro}</td>
+                            </tr>)}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         )
