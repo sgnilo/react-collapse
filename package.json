@@ -2,7 +2,7 @@
   "name": "react-x-collapse",
   "version": "1.0.1",
   "description": "react-x-collapse",
-  "main": "dist/react-x-collapse.js",
+  "main": "./dist/react-x-collapse.min.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development babel-node server/app.js",
