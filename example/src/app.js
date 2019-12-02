@@ -1,10 +1,10 @@
 import './style/index.scss'
-import '../../scss/index.scss'
 
 import React from 'react'
 import ReactDom from 'react-dom'
 
 import Pages from './pages'
+import { Collapse } from 'react-collapse'
 
 ReactDom.render(
     <Pages />,

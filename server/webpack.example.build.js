@@ -20,8 +20,7 @@ module.exports = {
         modules: ['node_modules'],
         extensions: ['.js', '.jsx', '.tsx', '.ts'],
         alias: {
-            'react-x-component': path.resolve(__dirname, '../src'),
-            'services': path.resolve(__dirname, '../example/src/services'),
+            'react-collapse': path.resolve(__dirname, '../src'),
             'components': path.resolve(__dirname, '../example/src/components')
         }
     },
@@ -134,8 +133,8 @@ module.exports = {
             inject: 'body'
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/react-x-demo.min.[contenthash:6].css',
-            chunkFilename: 'css/react-x-demo.min.[contenthash:6].css'
+            filename: 'css/react-collapse-demo.min.[contenthash:6].css',
+            chunkFilename: 'css/react-collapse-demo.min.[contenthash:6].css'
         }),
         new webpack.NoEmitOnErrorsPlugin()
     ]

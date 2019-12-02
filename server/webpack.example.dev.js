@@ -15,8 +15,7 @@ export default {
         modules: ['node_modules'],
         extensions: ['.js', '.jsx', '.tsx', '.ts'],
         alias: {
-            'react-x-component': path.resolve(__dirname, '../src'),
-            'services': path.resolve(__dirname, '../example/src/services'),
+            'react-collapse': path.resolve(__dirname, '../src'),
             'components': path.resolve(__dirname, '../example/src/components')
         }
     },
