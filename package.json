@@ -1,14 +1,14 @@
 {
-  "name": "react-collapse",
+  "name": "react-x-collapse",
   "version": "0.0.1",
-  "description": "react-collapse",
-  "main": "src/index.js",
+  "description": "react-x-collapse",
+  "main": "dist/react-x-collapse.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development babel-node server/app.js",
     "transpile:js": "babel src --out-dir dist",
     "transpile:ts": "babel src --out-dir dist --extensions \".ts\"",
-    "build:demo": "node node_modules/webpack/bin/webpack.js -p --color --display-error-details --config webpack.build.config.js"
+    "build": "node node_modules/webpack/bin/webpack.js -p --color --display-error-details --config webpack.build.config.js"
   },
   "repository": {
     "type": "git",

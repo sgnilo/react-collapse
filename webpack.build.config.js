@@ -1,4 +1,7 @@
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: [
@@ -18,7 +21,7 @@ module.exports = {
         'react': 'React',
         'react-dom': 'ReactDom'
     },
-    modules: {
+    module: {
         rules: [
             {
                 test: /\.(js|ts|tsx)?$/,

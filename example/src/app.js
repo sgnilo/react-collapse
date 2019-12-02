@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 import Pages from './pages'
-import { Collapse } from 'react-collapse'
+import { Collapse } from 'react-x-collapse'
 
 ReactDom.render(
     <Pages />,

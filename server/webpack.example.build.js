@@ -20,7 +20,7 @@ module.exports = {
         modules: ['node_modules'],
         extensions: ['.js', '.jsx', '.tsx', '.ts'],
         alias: {
-            'react-collapse': path.resolve(__dirname, '../src'),
+            'react-x-collapse': path.resolve(__dirname, '../src'),
             'components': path.resolve(__dirname, '../example/src/components')
         }
     },

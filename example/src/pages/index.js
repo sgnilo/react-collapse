@@ -1,5 +1,5 @@
 import React from 'react'
-import { Collapse } from 'react-collapse'
+import { Collapse } from 'react-x-collapse'
 
 
 const OtherNode = (props) => {
@@ -167,7 +167,7 @@ export default class extends React.Component {
         const { iconPosition, modes, activeMode, collapseApi, panelApi } = this.state
         return (
             <div className="demo-wrapper">
-                <div className="example-header">React-Collapse/折叠面板</div>
+                <div className="example-header">React-x-Collapse/折叠面板</div>
                 <div className="example-nav">
                     {modes.map(item => (
                         <div className={`nav-item${item.mode === activeMode ? ' nav-item-active' : ''}`} key={item.mode} onClick={() => {this.changeMode(item.mode)}}>{item.mode}</div>

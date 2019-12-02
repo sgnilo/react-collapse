@@ -78,7 +78,7 @@ class Collapse extends React.Component {
     }
 
     render () {
-        const { children, style, onChange, bordered, expandIcon, expandIconPosition } = this.props
+        const { children, style, bordered, expandIcon, expandIconPosition } = this.props
         const { activeValue } = this.state 
         return (
         <div className='react-collapse-background' style={style}>
