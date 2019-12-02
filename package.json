@@ -20,7 +20,8 @@
   "files": [
     "src",
     "scss",
-    "example"
+    "example",
+    "dist"
   ],
   "author": "Jiangping Xu",
   "license": "MIT",
