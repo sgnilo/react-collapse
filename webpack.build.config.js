@@ -10,7 +10,7 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname,'dist'),
-        filename: 'react-collapse.min.js',
+        filename: 'react-x-collapse.min.js',
         library: 'ReactCollapse',
         libraryTarget: "umd"
     },
@@ -88,7 +88,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'react-collapse.min.css'
+            filename: 'react-x-collapse.min.css'
         })
     ]
 }
