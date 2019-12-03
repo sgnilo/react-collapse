@@ -1,4 +1,4 @@
-# react-collapse
+# react-x-collapse
 
 ## Feature
 
