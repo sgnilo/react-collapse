@@ -6,8 +6,16 @@ a basic UI component base on React
 
 ## Install
 
+install from github
+
 ```
 npm install git+https://github.com/sgnilo/react-collapse.git
+```
+
+install from npm
+
+```
+npm install react-x-collapse
 ```
 
 ## Usage
