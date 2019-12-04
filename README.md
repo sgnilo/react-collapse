@@ -21,7 +21,7 @@ npm install react-x-collapse
 ## Usage
 
 ```
-import { Collapse } from 'react-collapse'
+import { Collapse } from 'react-x-collapse'
 
 const { Panel } = Collapse
 
