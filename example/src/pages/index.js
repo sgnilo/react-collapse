@@ -73,7 +73,7 @@ export default class extends React.Component {
                     intro: '是否开启手风琴模式',
                 },
                 {
-                    arg: 'defaultProps',
+                    arg: 'defaultActiveKey',
                     type: 'array',
                     default: '[]',
                     intro: '默认展开的Panel的列表，由Panel的targetKey组成的集合',
