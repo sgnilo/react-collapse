@@ -18,8 +18,8 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     externals: {
-        'react': 'React',
-        'react-dom': 'ReactDom'
+        'react': 'react',
+        'react-dom': 'react-dom'
     },
     module: {
         rules: [

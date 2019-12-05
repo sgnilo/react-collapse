@@ -1,5 +1,5 @@
-import React from 'react'
-import { Collapse } from 'react-x-collapse'
+import * as React from 'react'
+import { Collapse } from '../../../dist/react-x-collapse.min.js'
 
 
 const OtherNode = (props) => {
